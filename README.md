@@ -20,9 +20,9 @@ and run apps with shingon.
 
 The available commands are:
 
-* [create](https://github.com/thancock20/shingon#mantra-create-path)
-* [generate](https://github.com/thancock20/shingon#mantra-generate-type-name)
-* [destroy](https://github.com/thancock20/shingon#mantra-destroy-type-name)
+* [create](https://github.com/thancock20/shingon#shingon-create-path)
+* [generate](https://github.com/thancock20/shingon#shingon-generate-type-name)
+* [destroy](https://github.com/thancock20/shingon#shingon-destroy-type-name)
 
 Currently, shingon expects you to be in the app root directory.
 
