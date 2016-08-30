@@ -1,34 +1,34 @@
-# Mantra CLI
-
-[![Build Status](https://travis-ci.org/sungwoncho/mantra-cli.svg?branch=master)](https://travis-ci.org/sungwoncho/mantra-cli)
+# Shingon
 
 A command line interface for developing Meteor apps using [Mantra](https://github.com/kadirahq/mantra).
+
+A more opinionated version of the [official Mantra CLI](https://github.com/mantrajs/mantra-cli).
 
 
 ## Installation
 
-    npm install -g mantra-cli
+    npm install -g shingon
 
-See [RELEASE NOTE](https://github.com/mantrajs/mantra-cli/blob/master/RELEASE_NOTE.md)
-if you are upgrading and wondering what has changed in the latest version.
+<!-- See [RELEASE NOTE](https://github.com/mantrajs/mantra-cli/blob/master/RELEASE_NOTE.md) -->
+<!-- if you are upgrading and wondering what has changed in the latest version. -->
 
 **Meteor version 1.3 or higher** needs to be present in your machine to create
-and run apps with mantra-cli.
+and run apps with shingon.
 
 
 ## Documentation
 
 The available commands are:
 
-* [create](https://github.com/mantrajs/mantra-cli#mantra-create-path)
-* [generate](https://github.com/mantrajs/mantra-cli#mantra-generate-type-name)
-* [destroy](https://github.com/mantrajs/mantra-cli#mantra-destroy-type-name)
+* [create](https://github.com/thancock20/shingon#mantra-create-path)
+* [generate](https://github.com/thancock20/shingon#mantra-generate-type-name)
+* [destroy](https://github.com/thancock20/shingon#mantra-destroy-type-name)
 
-Currently, CLI expects you to be in the app root directory.
+Currently, shingon expects you to be in the app root directory.
 
 ---------------------------------------
 
-### mantra create [path]
+### shingon create [path]
 *alias: c*
 
 Create a Meteor application using Mantra spec under `path`.
@@ -49,7 +49,7 @@ Log the output of the scripts in the console, rather than silencing them.
 
 ---------------------------------------
 
-### mantra generate [type] [name]
+### shingon generate [type] [name]
 *alias: g*
 
 Generate a file of `type` and name specified `name`.
@@ -64,9 +64,9 @@ Possible values are:
 By default, a stateless component is generated. By using `--use-class` option
 (alias `-c`), you can generate a ES2015 class extending `React.Component`.
 
-    mantra g component core:user_list -c
+    shingon g component core:user_list -c
 
-Mantra-cli also generates a [storybook](https://github.com/kadirahq/react-storybook)-file for each component. It's curently not possible to disable this feature (PR welcome).
+shingon also generates a [storybook](https://github.com/kadirahq/react-storybook)-file for each component. It's curently not possible to disable this feature (PR welcome).
 
 * `container`
 
@@ -77,7 +77,7 @@ Generates a `container` and its corresponding `component`.
 Use `--schema` option (alias `-s`) to specify the schema solution to use for
 your Mongo collections. Currently, you can specify `collection2`, and `astronomy`.
 
-    mantra g collection books -s collection2
+    shingon g collection books -s collection2
 
 * `method`
 * `publication`
@@ -94,9 +94,9 @@ on the client side, and all files of those types belong to a module.
 
 *Example*
 
-    mantra generate component core:posts
-    mantra generate publication users
-    mantra generate method comments
+    shingon generate component core:posts
+    shingon generate publication users
+    shingon generate method comments
 
 **Automatic update to index.js**
 
@@ -105,7 +105,7 @@ inserts `import` and `export` statements to the relevant `index.js` file.
 
 ---------------------------------------
 
-### mantra destroy [type] [name]
+### shingon destroy [type] [name]
 *alias: d*
 
 **This command removes files.**
@@ -115,9 +115,9 @@ You can provide all `types` supported by the `generate` command.
 
 ---------------------------------------
 
-## Customization
+<!-- ## Customization
 
-Mantra-CLI allows you to easily customize its behaviors. Currently, you can
+Shingon allows you to easily customize its behaviors. Currently, you can
 customize:
 
 * tab size
@@ -213,7 +213,7 @@ e.g.
 #### Upgrading to 0.4.x
 
 * From `0.4.0`, `.mantra` directory with configurations is provided to allow
-you configure the behavior of the CLI. Run `mantra restore config`.
+you configure the behavior of the CLI. Run `mantra restore config`. -->
 
 ## Contributor Guide
 
