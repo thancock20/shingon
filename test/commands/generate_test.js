@@ -167,14 +167,25 @@ describe('core.components.comment_list', () => {
       let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
       expect(content).to.equal(
 `import React from 'react';
+import useSheet from 'react-jss';
 
-const Post = () => (
-  <div>
-    Post
-  </div>
-);
+import jss from 'jss';
+import preset from 'jss-preset-default';
+jss.setup(preset());
 
-export default Post;
+const Post = ({ sheet }) => {
+  const { } = sheet.classes;
+
+  return (
+    <div>
+      Post
+    </div>
+  );
+};
+
+const styles = { };
+
+export default useSheet(Post, styles);
 `);
     });
 
@@ -183,6 +194,11 @@ export default Post;
       let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
       expect(content).to.equal(
 `import React from 'react';
+import useSheet from 'react-jss';
+
+import jss from 'jss';
+import preset from 'jss-preset-default';
+jss.setup(preset());
 
 class Post extends React.Component {
   constructor(props) {
@@ -190,6 +206,8 @@ class Post extends React.Component {
   }
 
   render() {
+    const { } = this.props.sheet.classes;
+
     return (
       <div>
         Post
@@ -198,7 +216,9 @@ class Post extends React.Component {
   }
 }
 
-export default Post;
+const styles = { };
+
+export default useSheet(Post, styles);
 `);
     });
 

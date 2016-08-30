@@ -21,4 +21,6 @@ class <%= componentName %> extends React.Component {
   }
 }
 
+const styles = { };
+
 export default useSheet(<%= componentName %>, styles);
