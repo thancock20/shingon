@@ -1,4 +1,9 @@
 import React from 'react';
+import useSheet from 'react-jss';
+
+import jss from 'jss';
+import preset from 'jss-preset-default';
+jss.setup(preset());
 
 class <%= componentName %> extends React.Component {
   constructor(props) {
@@ -6,6 +11,8 @@ class <%= componentName %> extends React.Component {
   }
 
   render() {
+    const { } = this.props.sheet.classes;
+
     return (
       <div>
         <%= componentName %>
@@ -14,4 +21,4 @@ class <%= componentName %> extends React.Component {
   }
 }
 
-export default <%= componentName %>;
+export default useSheet(<%= componentName %>, styles);
