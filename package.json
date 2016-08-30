@@ -1,9 +1,9 @@
 {
-  "name": "mantra-cli",
+  "name": "Shingon",
   "version": "0.4.0-rc.4",
   "description": "Command line interface for building Meteor apps with Mantra",
   "bin": {
-    "mantra": "./bin/mantra"
+    "shingon": "./bin/shingon"
   },
   "scripts": {
     "test": "npm run-script compile && NODE_ENV=test ./node_modules/.bin/_mocha test/**/**/*_test.js --compilers js:babel-core/register",
@@ -12,19 +12,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sungwoncho/mantra-cli.git"
+    "url": "git+https://github.com/thancock20/shingon.git"
   },
   "keywords": [
     "meteor",
     "mantra",
     "cli"
   ],
-  "author": "Sung Won Cho <mikeswcho@gmail.com> (https://sungwoncho.io/)",
+  "author": "Todd Hancock <thancock20@hotmail.com> (http://www.toddhancock.net/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sungwoncho/mantra-cli/issues"
+    "url": "https://github.com/thancock20/shingon/issues"
   },
-  "homepage": "https://github.com/sungwoncho/mantra-cli#readme",
+  "homepage": "https://github.com/thancock20/shingon#readme",
   "dependencies": {
     "colors": "^1.1.2",
     "commander": "^2.9.0",
