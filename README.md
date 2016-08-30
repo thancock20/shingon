@@ -66,6 +66,8 @@ By default, a stateless component is generated. By using `--use-class` option
 
     shingon g component core:user_list -c
 
+shingon adds [JSS](https://github.com/cssinjs/jss) and [React JSS](https://github.com/cssinjs/react-jss) to allow styling in the component. [Not in Mantra-CLI]
+
 shingon also generates a [storybook](https://github.com/kadirahq/react-storybook)-file for each component. It's curently not possible to disable this feature (PR welcome).
 
 * `container`
