@@ -1,20 +1,9 @@
 import React from 'react';
-import useSheet from 'react-jss';
 
-import jss from 'jss';
-import preset from 'jss-preset-default';
-jss.setup(preset());
+const <%= componentName %> = () => (
+  <div>
+    <%= componentName %>
+  </div>
+);
 
-const <%= componentName %> = ({ sheet }) => {
-  const { } = sheet.classes;
-
-  return (
-    <div>
-      <%= componentName %>
-    </div>
-  );
-};
-
-const styles = { };
-
-export default useSheet(<%= componentName %>, styles);
+export default <%= componentName %>;
