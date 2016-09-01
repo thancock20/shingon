@@ -112,7 +112,7 @@ inserts `import` and `export` statements to the relevant `index.js` file.
 
 **This command removes files.**
 
-Destroys all files that its counterpart `mantra generate` command would generate.
+Destroys all files that its counterpart `shingon generate` command would generate.
 You can provide all `types` supported by the `generate` command.
 
 ---------------------------------------
