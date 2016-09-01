@@ -167,6 +167,46 @@ describe('core.components.comment_list', () => {
       let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
       expect(content).to.equal(
 `import React from 'react';
+
+const Post = () => (
+  <div>
+    Post
+  </div>
+);
+
+export default Post;
+`);
+    });
+
+    it("generates a class extending React.Component if useClass option is provided", function() {
+      generate('component', 'core:post', {useClass: true});
+      let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`import React from 'react';
+
+class Post extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        Post
+      </div>
+    );
+  }
+}
+
+export default Post;
+`);
+    });
+
+    it("generates a stateless component with jss boilerplate if useJss option is provided", function() {
+      generate('component', 'core:post', {useJss: true});
+      let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`import React from 'react';
 import useSheet from 'react-jss';
 
 import jss from 'jss';
@@ -189,8 +229,8 @@ export default useSheet(Post, styles);
 `);
     });
 
-    it("generates a class extending React.Component if useClass option is provided", function() {
-      generate('component', 'core:post', {useClass: true});
+    it("generates a class extending React.Component with jss boilerplate if useClass and useJss options are provided", function() {
+      generate('component', 'core:post', {useClass: true, useJss: true});
       let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
       expect(content).to.equal(
 `import React from 'react';
