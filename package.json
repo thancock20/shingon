@@ -1,6 +1,6 @@
 {
   "name": "shingon",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Command line interface for building Meteor apps with Mantra",
   "bin": {
     "shingon": "./bin/shingon"
