@@ -209,10 +209,6 @@ export default Post;
 `import React from 'react';
 import useSheet from 'react-jss';
 
-import jss from 'jss';
-import preset from 'jss-preset-default';
-jss.setup(preset());
-
 const Post = ({ sheet }) => {
   const { } = sheet.classes;
 
@@ -235,10 +231,6 @@ export default useSheet(Post, styles);
       expect(content).to.equal(
 `import React from 'react';
 import useSheet from 'react-jss';
-
-import jss from 'jss';
-import preset from 'jss-preset-default';
-jss.setup(preset());
 
 class Post extends React.Component {
   constructor(props) {
