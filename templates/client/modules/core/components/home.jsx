@@ -1,15 +1,13 @@
 import React from 'react';
 import useSheet from 'react-jss';
-
-import jss from 'jss';
-import preset from 'jss-preset-default';
-jss.setup(preset());
+import Helmet from 'react-helmet';
 
 const Home = ({ sheet }) => {
   const { welcome } = sheet.classes;
 
   return (
     <div>
+      <Helmet title="Home" />
       <h1>Mantra</h1>
       <p className={welcome}>
         Welcome to Mantra 0.2.0.
@@ -28,7 +26,7 @@ const Home = ({ sheet }) => {
 
 const styles = {
   welcome: {
-    fontSize: '20px',
+    fontSize: 20,
     color: 'red'
   }
 };
