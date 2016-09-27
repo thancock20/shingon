@@ -155,7 +155,9 @@ import {shallow} from 'enzyme';
 import CommentList from '../comment_list';
 
 describe('core.components.comment_list', () => {
-  it('should do something');
+  it('should render without exploding', () => {
+    expect(shallow(<CommentList />).length).to.equal(1);
+  });
 });
 `);
     });
@@ -274,7 +276,9 @@ import {shallow} from 'enzyme';
 import HeaderMenu from '../header_menu';
 
 describe('core.components.header_menu', () => {
-  it('should do something');
+  it('should render without exploding', () => {
+    expect(shallow(<HeaderMenu />).length).to.equal(1);
+  });
 });
 `);
     });
