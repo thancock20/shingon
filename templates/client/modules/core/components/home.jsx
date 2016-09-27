@@ -1,28 +1,24 @@
 import React from 'react';
-import useSheet from 'react-jss';
+import Load from '/lib/load_jss';
 import Helmet from 'react-helmet';
 
-const Home = ({ sheet }) => {
-  const { welcome } = sheet.classes;
-
-  return (
-    <div>
-      <Helmet title="Home" />
-      <h1>Mantra</h1>
-      <p className={welcome}>
-        Welcome to Mantra 0.2.0.
-      </p>
-      <ul>
-        <li>
-          Read <a target="_blank" href="https://kadirahq.github.io/mantra/">spec</a>
-        </li>
-        <li>
-          Learn <a target="_blank" href="https://github.com/sungwoncho/mantra-cli#commands">CLI</a>
-        </li>
-      </ul>
-    </div>
-  );
-};
+const Home = () => (
+  <div>
+    <Helmet title="Home" />
+    <h1>Shingon</h1>
+    <p className={classes.welcome}>
+      Welcome to Shingon.
+    </p>
+    <ul>
+      <li>
+        Read <a target="_blank" href="https://kadirahq.github.io/mantra/">the mantra spec</a>
+      </li>
+      <li>
+        Learn <a target="_blank" href="https://github.com/thancock20/shingon#commands">CLI</a>
+      </li>
+    </ul>
+  </div>
+);
 
 const styles = {
   welcome: {
@@ -30,5 +26,6 @@ const styles = {
     color: 'red'
   }
 };
+const classes = Load(styles);
 
-export default useSheet(Home, styles);
+export default Home;

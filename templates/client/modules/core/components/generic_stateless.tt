@@ -1,9 +1,15 @@
 import React from 'react';
+import Load from '/lib/load_jss';
 
 const <%= componentName %> = () => (
   <div>
     <%= componentName %>
   </div>
 );
+
+const styles = {
+
+};
+const classes = Load(styles);
 
 export default <%= componentName %>;

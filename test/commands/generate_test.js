@@ -169,12 +169,18 @@ describe('core.components.comment_list', () => {
       let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
       expect(content).to.equal(
 `import React from 'react';
+import Load from '/lib/load_jss';
 
 const Post = () => (
   <div>
     Post
   </div>
 );
+
+const styles = {
+
+};
+const classes = Load(styles);
 
 export default Post;
 `);
@@ -185,6 +191,7 @@ export default Post;
       let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
       expect(content).to.equal(
 `import React from 'react';
+import Load from '/lib/load_jss';
 
 class Post extends React.Component {
   constructor(props) {
@@ -199,60 +206,13 @@ class Post extends React.Component {
     );
   }
 }
+
+const styles = {
+
+};
+const classes = Load(styles);
 
 export default Post;
-`);
-    });
-
-    it("generates a stateless component with jss boilerplate if useJss option is provided", function() {
-      generate('component', 'core:post', {useJss: true});
-      let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
-      expect(content).to.equal(
-`import React from 'react';
-import useSheet from 'react-jss';
-
-const Post = ({ sheet }) => {
-  const { } = sheet.classes;
-
-  return (
-    <div>
-      Post
-    </div>
-  );
-};
-
-const styles = { };
-
-export default useSheet(Post, styles);
-`);
-    });
-
-    it("generates a class extending React.Component with jss boilerplate if useClass and useJss options are provided", function() {
-      generate('component', 'core:post', {useClass: true, useJss: true});
-      let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
-      expect(content).to.equal(
-`import React from 'react';
-import useSheet from 'react-jss';
-
-class Post extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { } = this.props.sheet.classes;
-
-    return (
-      <div>
-        Post
-      </div>
-    );
-  }
-}
-
-const styles = { };
-
-export default useSheet(Post, styles);
 `);
     });
 
