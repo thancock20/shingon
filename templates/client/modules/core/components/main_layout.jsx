@@ -1,15 +1,18 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-import styles from '../../../styles/index.js';
-import load from '../../../../lib/style_loader';
-load(styles);
+import styles from '/client/styles/index.js';
+import Load from '/lib/load_jss';
+Load(styles, 'global');
 
 const Layout = ({content = () => null }) => (
   <div>
     <Helmet
       defaultTitle="<%= appName %>"
-      titleTemplate="<%= appName %> - %s"
+      titleTemplate="<%= appName %> | %s"
+      meta={[
+        {name: 'viewport', content: 'width=device-width, initial-scale=1'}
+      ]}
     />
     <div>
       {content()}
