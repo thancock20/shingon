@@ -34,6 +34,7 @@ describe("create command", function() {
     expect(checkFileOrDirExists('./blog/client/modules/core/libs/')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/styles/index.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/styles/normalize.js')).to.equal(true);
+    expect(checkFileOrDirExists('./blog/client/styles/global.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/main.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/lib/collections/index.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/lib/style_loader.js')).to.equal(false);
