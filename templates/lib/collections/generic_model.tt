@@ -30,6 +30,6 @@ const <%= className %> = Class.create({
 
 if (Meteor.isServer) {
   <%= className %>.unpublished = [];
-};
+}
 
 export default <%= className %>;

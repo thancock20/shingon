@@ -541,7 +541,7 @@ const Task = Class.create({
 
 if (Meteor.isServer) {
   Task.unpublished = [];
-};
+}
 
 export default Task;
 `);
