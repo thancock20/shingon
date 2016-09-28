@@ -1,0 +1,35 @@
+import {Mongo} from 'meteor/mongo';
+import {Class} from 'meteor/jagi:astronomy';
+import {Meteor} from 'meteor/meteor';
+
+const <%= collectionName %> = new Mongo.Collection('<%= collectionFileName %>');
+
+const <%= className %> = Class.create({
+  name: '<%= className %>',
+  collection: <%= collectionName %>,
+  fields: {
+
+  },
+  events: {
+    afterInit(e) {
+
+    },
+    beforeRemove(e) {
+
+    }
+  },
+  methods: {
+    create(inits) {
+
+    },
+    edit(updates) {
+
+    }
+  }
+});
+
+if (Meteor.isServer) {
+  <%= className %>.unpublished = [];
+};
+
+export default <%= className %>;

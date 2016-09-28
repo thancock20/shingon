@@ -504,6 +504,50 @@ export default function () {
     });
   });
 
+  describe("model", function() {
+    it("generates a model collection", function() {
+      generate('model', 'tasks');
+      let content = fs.readFileSync('./lib/collections/tasks.js', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`import {Mongo} from 'meteor/mongo';
+import {Class} from 'meteor/jagi:astronomy';
+import {Meteor} from 'meteor/meteor';
+
+const Tasks = new Mongo.Collection('tasks');
+
+const Task = Class.create({
+  name: 'Task',
+  collection: Tasks,
+  fields: {
+
+  },
+  events: {
+    afterInit(e) {
+
+    },
+    beforeRemove(e) {
+
+    }
+  },
+  methods: {
+    create(inits) {
+
+    },
+    edit(updates) {
+
+    }
+  }
+});
+
+if (Meteor.isServer) {
+  Task.unpublished = [];
+};
+
+export default Task;
+`);
+    })
+  });
+
   describe("module", function() {
     it("generates a module", function() {
       generate('module', 'comments');
