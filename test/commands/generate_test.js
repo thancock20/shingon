@@ -546,6 +546,19 @@ if (Meteor.isServer) {
 export default Task;
 `);
     })
+
+    it("generates a model method", function() {
+      generate('model', 'tasks');
+      let content = fs.readFileSync('./server/methods/tasks.js', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`import {Tasks} from '/lib/collections';
+import defaultMethods from '/lib/default_methods';
+
+export default function () {
+  defaultMethods('tasks', Tasks);
+}
+`);
+    })
   });
 
   describe("module", function() {
