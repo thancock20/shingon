@@ -1,0 +1,25 @@
+/* eslint-env mocha, meteor */
+/* global meteor, ddp, expect */
+
+describe('<%= modelFileName %>', () => {
+  const server = meteor({flavor: 'fiber'});
+  const client = ddp(server, {flavor: 'fiber'});
+
+  before(() => {
+    server.execute(() => {
+
+    });
+  });
+
+  describe('<%= modelFileName %>.create', () => {
+    it('should do something');
+  });
+
+  describe('<%= modelFileName %>.edit', () => {
+    it('should do something');
+  });
+
+  describe('<%= modelFileName %>.delete', () => {
+    it('should do something');
+  });
+});

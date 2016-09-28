@@ -575,6 +575,38 @@ export default function () {
   });
 }
 `);
+    });
+
+    it("generates a model integration test", function() {
+      generate('model', 'tasks');
+      let content = fs.readFileSync('./tests/gagarin/tasks.js', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`/* eslint-env mocha, meteor */
+/* global meteor, ddp, expect */
+
+describe('tasks', () => {
+  const server = meteor({flavor: 'fiber'});
+  const client = ddp(server, {flavor: 'fiber'});
+
+  before(() => {
+    server.execute(() => {
+
+    });
+  });
+
+  describe('tasks.create', () => {
+    it('should do something');
+  });
+
+  describe('tasks.edit', () => {
+    it('should do something');
+  });
+
+  describe('tasks.delete', () => {
+    it('should do something');
+  });
+});
+`);
 
     });
   });
