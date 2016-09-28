@@ -112,11 +112,11 @@ export default {
       expect((checkFileOrDirExists(containerPath))).to.equal(false);
     });
 
-    it("removes the component file", function() {
+    it("does not remove the component file", function() {
       let componentPath = './client/modules/core/components/posts.jsx';
       fse.outputFileSync(componentPath, 'dummy content');
       destroy('container', 'core:posts');
-      expect((checkFileOrDirExists(componentPath))).to.equal(false);
+      expect((checkFileOrDirExists(componentPath))).to.equal(true);
     });
 
     it("removes the test file for container", function() {
@@ -126,11 +126,11 @@ export default {
       expect((checkFileOrDirExists(testPath))).to.equal(false);
     });
 
-    it("removes the test file for component", function() {
+    it("does not remove the test file for component", function() {
       let testPath = './client/modules/core/components/tests/post_list.js';
       fse.outputFileSync(testPath, 'dummy content');
       destroy('container', 'core:postList');
-      expect((checkFileOrDirExists(testPath))).to.equal(false);
+      expect((checkFileOrDirExists(testPath))).to.equal(true);
     });
   });
 

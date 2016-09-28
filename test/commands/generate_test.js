@@ -93,9 +93,9 @@ describe('core.actions.flagged_comments', () => {
       expect(checkFileOrDirExists('./client/modules/core/containers/post.js')).to.equal(true);
     });
 
-    it("generates a component", function() {
+    it("does not generate a component", function() {
       generate('container', 'core:post');
-      expect(checkFileOrDirExists('./client/modules/core/components/post.jsx')).to.equal(true);
+      expect(checkFileOrDirExists('./client/modules/core/components/post.jsx')).to.equal(false);
     });
 
     it("does not generate any files if entity name contains a dot", function() {
@@ -115,7 +115,6 @@ describe('core.actions.flagged_comments', () => {
     it("converts the entity name to snakecase for the file name", function() {
       generate('container', 'core:headerMenu');
       expect(checkFileOrDirExists('./client/modules/core/containers/header_menu.js')).to.equal(true);
-      expect(checkFileOrDirExists('./client/modules/core/components/header_menu.jsx')).to.equal(true);
     });
 
     it("generates a test file for the container", function() {
@@ -140,23 +139,6 @@ describe('core.containers.comment_list', () => {
 //    };
 
     it('should do something');
-  });
-});
-`);
-    });
-
-    it("generates a test file for the component", function() {
-      generate('container', 'core:commentList');
-      let content = fs.readFileSync('./client/modules/core/components/tests/comment_list.js', {encoding: 'utf-8'});
-      expect(content).to.equal(
-`const {describe, it} = global;
-import {expect} from 'chai';
-import {shallow} from 'enzyme';
-import CommentList from '../comment_list';
-
-describe('core.components.comment_list', () => {
-  it('should render without exploding', () => {
-    expect(shallow(<CommentList />).length).to.equal(1);
   });
 });
 `);
