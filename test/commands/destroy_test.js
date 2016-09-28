@@ -248,6 +248,36 @@ export default function () {
     });
   });
 
+  describe('model', function() {
+    it("removes the model collection file", function() {
+      let collectionPath = './lib/collections/posts.js';
+      fse.outputFileSync(collectionPath, 'dummy content');
+      destroy('model', 'posts');
+      expect((checkFileOrDirExists(collectionPath))).to.equal(false);
+    });
+
+    it("removes the model method file", function() {
+      let methodPath = './server/methods/posts.js';
+      fse.outputFileSync(methodPath, 'dummy content');
+      destroy('model', 'posts');
+      expect((checkFileOrDirExists(methodPath))).to.equal(false);
+    });
+
+    it("removes the model publication file", function() {
+      let publicationPath = './server/publications/posts.js';
+      fse.outputFileSync(publicationPath, 'dummy content');
+      destroy('model', 'posts');
+      expect((checkFileOrDirExists(publicationPath))).to.equal(false);
+    });
+
+    it("removes the model integration test file", function() {
+      let testPath = './tests/gagarin/posts.js';
+      fse.outputFileSync(testPath, 'dummy content');
+      destroy('model', 'posts');
+      expect((checkFileOrDirExists(testPath))).to.equal(false);
+    })
+  });
+
   describe("module", function() {
     it("removes the module directory", function() {
       generate('module', 'comments');
