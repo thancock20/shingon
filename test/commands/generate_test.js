@@ -558,7 +558,25 @@ export default function () {
   defaultMethods('tasks', Tasks);
 }
 `);
-    })
+    });
+
+    it("generates a model publication", function() {
+      generate('model', 'tasks');
+      let content = fs.readFileSync('./server/publications/tasks.js', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`import {Tasks} from '/lib/collections';
+import {Meteor} from 'meteor/meteor';
+import {check} from 'meteor/check';
+import getUnpublishedFields from '/lib/get_unpublished_fields';
+
+export default function () {
+  Meteor.publish('tasks', function () {
+    return Tasks.find({}, getUnpublishedFields(Tasks));
+  });
+}
+`);
+
+    });
   });
 
   describe("module", function() {
