@@ -39,6 +39,8 @@ describe("create command", function() {
     expect(checkFileOrDirExists('./blog/lib/collections/index.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/lib/style_loader.js')).to.equal(false);
     expect(checkFileOrDirExists('./blog/lib/load_jss.js')).to.equal(true);
+    expect(checkFileOrDirExists('./blog/lib/get_unpublished_fields.js')).to.equal(true);
+    expect(checkFileOrDirExists('./blog/lib/default_methods.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/server/publications/index.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/server/methods/index.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/server/configs/')).to.equal(true);

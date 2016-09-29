@@ -504,6 +504,113 @@ export default function () {
     });
   });
 
+  describe("model", function() {
+    it("generates a model collection", function() {
+      generate('model', 'tasks');
+      let content = fs.readFileSync('./lib/collections/tasks.js', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`import {Mongo} from 'meteor/mongo';
+import {Class} from 'meteor/jagi:astronomy';
+import {Meteor} from 'meteor/meteor';
+
+const Tasks = new Mongo.Collection('tasks');
+
+const Task = Class.create({
+  name: 'Task',
+  collection: Tasks,
+  fields: {
+
+  },
+  events: {
+    afterInit(e) {
+
+    },
+    beforeRemove(e) {
+
+    }
+  },
+  methods: {
+    create(inits) {
+
+    },
+    edit(updates) {
+
+    }
+  }
+});
+
+if (Meteor.isServer) {
+  Task.unpublished = [];
+}
+
+export default Task;
+`);
+    })
+
+    it("generates a model method", function() {
+      generate('model', 'tasks');
+      let content = fs.readFileSync('./server/methods/tasks.js', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`import {Tasks} from '/lib/collections';
+import defaultMethods from '/lib/default_methods';
+
+export default function () {
+  defaultMethods('tasks', Tasks);
+}
+`);
+    });
+
+    it("generates a model publication", function() {
+      generate('model', 'tasks');
+      let content = fs.readFileSync('./server/publications/tasks.js', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`import {Tasks} from '/lib/collections';
+import {Meteor} from 'meteor/meteor';
+import {check} from 'meteor/check';
+import getUnpublishedFields from '/lib/get_unpublished_fields';
+
+export default function () {
+  Meteor.publish('tasks', function () {
+    return Tasks.find({}, getUnpublishedFields(Tasks));
+  });
+}
+`);
+    });
+
+    it("generates a model integration test", function() {
+      generate('model', 'tasks');
+      let content = fs.readFileSync('./tests/gagarin/tasks.js', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`/* eslint-env mocha, meteor */
+/* global meteor, ddp, expect */
+
+describe('tasks', () => {
+  const server = meteor({flavor: 'fiber'});
+  const client = ddp(server, {flavor: 'fiber'});
+
+  before(() => {
+    server.execute(() => {
+
+    });
+  });
+
+  describe('tasks.create', () => {
+    it('should do something');
+  });
+
+  describe('tasks.edit', () => {
+    it('should do something');
+  });
+
+  describe('tasks.delete', () => {
+    it('should do something');
+  });
+});
+`);
+
+    });
+  });
+
   describe("module", function() {
     it("generates a module", function() {
       generate('module', 'comments');
