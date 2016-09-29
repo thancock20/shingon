@@ -118,9 +118,9 @@ describe('core.actions.flagged_comments', () => {
       expect(checkFileOrDirExists('./client/modules/core/containers/post.js')).to.equal(true);
     });
 
-    it("does not generate a component", function() {
+    it("generates a component", function() {
       generate('container', 'core:post');
-      expect(checkFileOrDirExists('./client/modules/core/components/post.jsx')).to.equal(false);
+      expect(checkFileOrDirExists('./client/modules/core/components/post.jsx')).to.equal(true);
     });
 
     it("does not generate any files if entity name contains a dot", function() {

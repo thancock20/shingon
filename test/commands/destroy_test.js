@@ -119,6 +119,13 @@ export default {
       expect((checkFileOrDirExists(componentPath))).to.equal(true);
     });
 
+    it("removes the component file if withComponent option is provided", function() {
+      let componentPath = './client/modules/core/components/posts.jsx';
+      fse.outputFileSync(componentPath, 'dummy content');
+      destroy('container', 'core:posts', {withComponent: true});
+      expect((checkFileOrDirExists(componentPath))).to.equal(false);
+    });
+
     it("removes the test file for container", function() {
       let testPath = './client/modules/core/containers/tests/post_list.js';
       fse.outputFileSync(testPath, 'dummy content');
