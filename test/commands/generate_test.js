@@ -616,6 +616,20 @@ describe('tasks', () => {
 `);
 
     });
+
+    it("does not generate if entity name contains a dot", function() {
+      generate('model', 'group.note');
+      expect(checkFileOrDirExists('./lib/collections/group.note.js')).to.equal(false);
+    });
+
+    it("converts the entity name to snakecase for the file name", function() {
+      generate('model', 'groupNote');
+      expect(checkFileOrDirExists('./lib/collections/group_note.js')).to.equal(true);
+    });
+  });
+
+  describe("methodStubs", function() {
+
   });
 
   describe("module", function() {
