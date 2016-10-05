@@ -507,22 +507,41 @@ const Task = Class.create({
   name: 'Task',
   collection: Tasks,
   fields: {
-
+    _id: {
+      type: String,
+      immutable: true
+    },
+    createdAt: {
+      type: Date,
+      default: () => new Date(),
+      immutable: true
+    },
+    updatedAt: {
+      type: Date,
+      default: () => new Date()
+    }
   },
   events: {
     afterInit(e) {
-
+      // const doc = e.currentTarget;
     },
     beforeRemove(e) {
-
+      // const doc = e.currentTarget;
     }
   },
   methods: {
     create(inits) {
-
+      // this.something = inits.something;
+      // this.save();
     },
     edit(updates) {
-
+      // for (let key in updates) {
+      //   if (updates.hasOwnProperty(key)) {
+      //     this[key] = updates[key];
+      //   }
+      // }
+      // this.updatedAt = new Date();
+      // this.save;
     }
   }
 });
