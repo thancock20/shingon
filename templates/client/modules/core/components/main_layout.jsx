@@ -1,10 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-import styles from '/client/styles/index.js';
-import Load from '/lib/load_jss';
-Load(styles, 'global');
-
 const Layout = ({content = () => null }) => (
   <div>
     <Helmet

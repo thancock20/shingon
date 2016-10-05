@@ -1,5 +1,4 @@
 import React from 'react';
-import Load from '/lib/load_jss';
 
 class <%= componentName %> extends React.Component {
   constructor(props) {
@@ -14,10 +13,5 @@ class <%= componentName %> extends React.Component {
     );
   }
 }
-
-const styles = {
-
-};
-const classes = Load(styles);
 
 export default <%= componentName %>;

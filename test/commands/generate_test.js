@@ -176,18 +176,12 @@ describe('core.containers.comment_list', () => {
       let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
       expect(content).to.equal(
 `import React from 'react';
-import Load from '/lib/load_jss';
 
 const Post = () => (
   <div>
     Post
   </div>
 );
-
-const styles = {
-
-};
-const classes = Load(styles);
 
 export default Post;
 `);
@@ -198,7 +192,6 @@ export default Post;
       let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
       expect(content).to.equal(
 `import React from 'react';
-import Load from '/lib/load_jss';
 
 class Post extends React.Component {
   constructor(props) {
@@ -213,11 +206,6 @@ class Post extends React.Component {
     );
   }
 }
-
-const styles = {
-
-};
-const classes = Load(styles);
 
 export default Post;
 `);

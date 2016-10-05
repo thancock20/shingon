@@ -1,12 +1,11 @@
 import React from 'react';
-import Load from '/lib/load_jss';
 import Helmet from 'react-helmet';
 
 const Home = () => (
   <div>
     <Helmet title="Home" />
     <h1>Shingon</h1>
-    <p className={classes.welcome}>
+    <p>
       Welcome to Shingon.
     </p>
     <ul>
@@ -19,13 +18,5 @@ const Home = () => (
     </ul>
   </div>
 );
-
-const styles = {
-  welcome: {
-    fontSize: 20,
-    color: 'red'
-  }
-};
-const classes = Load(styles);
 
 export default Home;
