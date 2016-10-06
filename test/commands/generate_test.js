@@ -628,8 +628,20 @@ describe('tasks', () => {
     });
   });
 
-  describe("methodStubs", function() {
+  describe("method-stub", function() {
+    it("generates a method stub", function() {
+      generate('method-stub', 'core:tasks');
+      let content = fs.readFileSync('./client/modules/core/configs/method_stubs/tasks.js', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`import defaultMethods from '/lib/default_methods';
 
+export default function ({Collections}) {
+  const {Tasks} = Collections;
+
+  defaultMethods('tasks', Tasks);
+}
+`);
+    });
   });
 
   describe("module", function() {
