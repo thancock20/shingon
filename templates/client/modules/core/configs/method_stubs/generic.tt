@@ -1,0 +1,7 @@
+import defaultMethods from '/lib/default_methods';
+
+export default function ({Collections}) {
+  const {<%= collectionName %>} = Collections;
+
+  defaultMethods('<%= methodFileName %>', <%= collectionName %>);
+}

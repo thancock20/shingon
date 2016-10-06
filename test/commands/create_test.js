@@ -28,7 +28,7 @@ describe("create command", function() {
     expect(checkFileOrDirExists('./blog/client/modules/core/components/tests')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/modules/core/containers/')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/modules/core/containers/tests')).to.equal(true);
-    expect(checkFileOrDirExists('./blog/client/modules/core/configs/')).to.equal(true);
+    expect(checkFileOrDirExists('./blog/client/modules/core/configs/method_stubs/index.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/modules/core/index.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/modules/core/routes.jsx')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/modules/core/libs/')).to.equal(true);

@@ -616,6 +616,103 @@ describe('tasks', () => {
 `);
 
     });
+
+    it("does not generate if entity name contains a dot", function() {
+      generate('model', 'group.note');
+      expect(checkFileOrDirExists('./lib/collections/group.note.js')).to.equal(false);
+    });
+
+    it("converts the entity name to snakecase for the file name", function() {
+      generate('model', 'groupNote');
+      expect(checkFileOrDirExists('./lib/collections/group_note.js')).to.equal(true);
+    });
+  });
+
+  describe("method-stub", function() {
+    it("generates a method stub", function() {
+      generate('method-stub', 'core:posts');
+      let content = fs.readFileSync('./client/modules/core/configs/method_stubs/posts.js', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`import defaultMethods from '/lib/default_methods';
+
+export default function ({Collections}) {
+  const {Posts} = Collections;
+
+  defaultMethods('posts', Posts);
+}
+`);
+    });
+
+    it("updates an empty client/modules/core/configs/method_stubs/index.js", function() {
+      generate('method-stub', 'core:posts');
+      let indexContent = fs.readFileSync('./client/modules/core/configs/method_stubs/index.js', {encoding: 'utf-8'});
+      expect(indexContent).to.equal(
+`import posts from \'./posts\';
+
+export default function (context) {
+  posts(context);
+}
+`);
+    });
+
+    it("updates a non-empty client/modules/core/configs/method_stubs/index.js", function() {
+      let originalContent =
+`import posts from \'./posts\';
+
+export default function (context) {
+  posts(context);
+}
+`;
+      fs.writeFileSync('./client/modules/core/configs/method_stubs/index.js', originalContent);
+
+      generate('method-stub', 'core:users');
+      let indexContent = fs.readFileSync('./client/modules/core/configs/method_stubs/index.js', {encoding: 'utf-8'});
+      expect(indexContent).to.equal(
+`import posts from \'./posts\';
+import users from \'./users\';
+
+export default function (context) {
+  posts(context);
+  users(context);
+}
+`);
+    });
+
+    it("does not update index.js if file already exists", function() {
+      let originalContent =
+`import posts from \'./posts\';
+import users from \'./users\';
+
+export default function (context) {
+  posts(context);
+  users(context);
+}
+`;
+      fs.writeFileSync('./client/modules/core/configs/method_stubs/index.js', originalContent);
+
+      generate('method-stub', 'core:users');
+      let indexContent = fs.readFileSync('./client/modules/core/configs/method_stubs/index.js', {encoding: 'utf-8'});
+      expect(indexContent).to.equal(
+`import posts from \'./posts\';
+import users from \'./users\';
+
+export default function (context) {
+  posts(context);
+  users(context);
+}
+`);
+
+    });
+
+    it("does not generate if entity name contains a dot", function() {
+      generate('method-stub', 'core:group.note');
+      expect(checkFileOrDirExists('./client/modules/core/configs/method_stubs/group.note.js')).to.equal(false);
+    });
+
+    it("converts the entity name to snakecase for the file name", function() {
+      generate('method-stub', 'core:groupNote');
+      expect(checkFileOrDirExists('./client/modules/core/configs/method_stubs/group_note.js')).to.equal(true);
+    });
   });
 
   describe("module", function() {
@@ -626,7 +723,7 @@ describe('tasks', () => {
       expect(checkFileOrDirExists('./client/modules/comments/actions/index.js')).to.equal(true);
       expect(checkFileOrDirExists('./client/modules/comments/components/')).to.equal(true);
       expect(checkFileOrDirExists('./client/modules/comments/containers/')).to.equal(true);
-      expect(checkFileOrDirExists('./client/modules/comments/configs/')).to.equal(true);
+      expect(checkFileOrDirExists('./client/modules/comments/configs/method_stubs/index.js')).to.equal(true);
       expect(checkFileOrDirExists('./client/modules/comments/index.js')).to.equal(true);
       expect(checkFileOrDirExists('./client/modules/comments/routes.jsx')).to.equal(true);
     });
