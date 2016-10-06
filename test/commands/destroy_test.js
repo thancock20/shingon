@@ -285,6 +285,44 @@ export default function () {
     })
   });
 
+  describe("method-stub", function() {
+    it("removes the method-stub file", function() {
+      let methodPath = './client/modules/core/configs/method_stubs/posts.js';
+      fse.outputFileSync(methodPath, 'dummy content');
+      destroy('method-stub', 'core:posts');
+      expect((checkFileOrDirExists(methodPath))).to.equal(false);
+    });
+
+    it("updates the index file", function() {
+      fse.outputFileSync('./client/modules/core/configs/method_stubs/posts.js', 'dummy content');
+      let indexContent =
+`import users from './users';
+import posts from './posts';
+import groupActivities from './group_activities';
+
+export default function (context) {
+  users(context);
+  posts(context);
+  groupActivities(context);
+}
+`;
+      fse.outputFileSync('./client/modules/core/configs/method_stubs/index.js', indexContent);
+      destroy('method-stub', 'core:groupActivities');
+      let updatedContent = fs.readFileSync(
+        './client/modules/core/configs/method_stubs/index.js', {encoding: 'utf-8'});
+      expect(updatedContent).to.equal(
+`import users from './users';
+import posts from './posts';
+
+export default function (context) {
+  users(context);
+  posts(context);
+}
+`
+      );
+    });
+  });
+
   describe("module", function() {
     it("removes the module directory", function() {
       generate('module', 'comments');
