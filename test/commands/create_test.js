@@ -29,6 +29,7 @@ describe("create command", function() {
     expect(checkFileOrDirExists('./blog/client/modules/core/containers/')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/modules/core/containers/tests')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/modules/core/configs/method_stubs/index.js')).to.equal(true);
+    expect(checkFileOrDirExists('./blog/client/modules/core/configs/initial_state.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/modules/core/index.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/modules/core/routes.jsx')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/modules/core/libs/')).to.equal(true);
@@ -41,6 +42,7 @@ describe("create command", function() {
     expect(checkFileOrDirExists('./blog/lib/load_jss.js')).to.equal(false);
     expect(checkFileOrDirExists('./blog/lib/get_unpublished_fields.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/lib/default_methods.js')).to.equal(true);
+    expect(checkFileOrDirExists('./blog/lib/initialize_state.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/server/publications/index.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/server/methods/index.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/server/configs/')).to.equal(true);

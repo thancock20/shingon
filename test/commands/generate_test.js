@@ -724,6 +724,7 @@ export default function (context) {
       expect(checkFileOrDirExists('./client/modules/comments/components/')).to.equal(true);
       expect(checkFileOrDirExists('./client/modules/comments/containers/')).to.equal(true);
       expect(checkFileOrDirExists('./client/modules/comments/configs/method_stubs/index.js')).to.equal(true);
+      expect(checkFileOrDirExists('./client/modules/comments/configs/initial_state.js')).to.equal(true);
       expect(checkFileOrDirExists('./client/modules/comments/index.js')).to.equal(true);
       expect(checkFileOrDirExists('./client/modules/comments/routes.jsx')).to.equal(true);
     });
