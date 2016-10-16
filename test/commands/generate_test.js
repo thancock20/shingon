@@ -216,8 +216,8 @@ export default Post;
       let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
       expect(content).to.equal(
 `import React from 'react';
-import FirstChild from './first_child';
-import SecondChild from './second_child';
+import FirstChild from './first_child.jsx';
+import SecondChild from './second_child.jsx';
 
 const Post = () => (
   <div>
