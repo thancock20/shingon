@@ -1,0 +1,11 @@
+import React from 'react';
+<%= childrenImports %>
+
+const <%= componentName %> = () => (
+  <div>
+    <%= componentName %>
+    <%= childrenComponents %>
+  </div>
+);
+
+export default <%= componentName %>;
