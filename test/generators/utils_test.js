@@ -123,11 +123,14 @@ describe("getTemplateVaraibles", function() {
   describe("for components", function() {
     let expected = {
       componentName: 'UserList',
-      moduleName: 'core'
+      moduleName: 'core',
+      childrenImports: null,
+      childrenComponents: null
     };
 
     it("gets template variables - variation 1", function() {
       let result = utils.getTemplateVaraibles('component', 'core', 'userList');
+      console.log(result);
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });

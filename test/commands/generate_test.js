@@ -231,6 +231,34 @@ export default Post;
 `);
     });
 
+    it("generates a class with children if useClass and children options are provided", function() {
+      generate('component', 'core:post', {useClass: true, children: ['FirstChild', 'SecondChild']});
+      let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`import React from 'react';
+import FirstChild from './first_child.jsx';
+import SecondChild from './second_child.jsx';
+
+class Post extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        Post
+        <FirstChild />
+        <SecondChild />
+      </div>
+    );
+  }
+}
+
+export default Post;
+`);
+    });
+
     it("does not generate if entity name contains a dot", function() {
       generate('component', 'core:header.menu');
       expect(checkFileOrDirExists('./client/modules/core/components/header.menu.jsx')).to.equal(false);
