@@ -602,6 +602,92 @@ export default Task;
 `);
     })
 
+    it("generates a model collection with owner properties if hasOwner option is set", function() {
+      generate('model', 'tasks', {hasOwner: true});
+      let content = fs.readFileSync('./lib/collections/tasks.js', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`import {Mongo} from 'meteor/mongo';
+import {Class} from 'meteor/jagi:astronomy';
+import {Meteor} from 'meteor/meteor';
+
+const Tasks = new Mongo.Collection('tasks');
+
+const Task = Class.create({
+  name: 'Task',
+  collection: Tasks,
+  fields: {
+    _id: {
+      type: String,
+      immutable: true
+    },
+    owner: {
+      type: String,
+      immutable: true
+    },
+    username: {
+      type: String,
+      transient: true
+    },
+    createdAt: {
+      type: Date,
+      default: () => new Date(),
+      immutable: true
+    },
+    updatedAt: {
+      type: Date,
+      default: () => new Date()
+    }
+  },
+  events: {
+    afterInit(e) {
+      const doc = e.currentTarget;
+      doc.username = Boolean(doc.owner) && Meteor.users.findOne(doc.owner).username;
+    },
+    beforeRemove(e) {
+      const doc = e.currentTarget;
+      if (!doc.isOwner()) {
+        throw new Meteor.Error('not-authorized');
+      }
+    }
+  },
+  methods: {
+    create(inits) {
+      if (!Meteor.userId()) {
+        throw new Meteor.Error('not-authorized');
+      }
+
+      // this.something = inits.something;
+      this.owner = Meteor.userId();
+      this.save();
+    },
+    edit(updates) {
+      if (!this.isOwner()) {
+        throw new Meteor.Error('not-authorized');
+      }
+
+      for (let key in updates) {
+        if (updates.hasOwnProperty(key)) {
+          this[key] = updates[key];
+        }
+      }
+
+      this.updatedAt = new Date();
+      this.save;
+    },
+    isOwner() {
+      return this.owner === Meteor.userId();
+    }
+  }
+});
+
+if (Meteor.isServer) {
+  Task.unpublished = [];
+}
+
+export default Task;
+`);
+    })
+
     it("generates a model method", function() {
       generate('model', 'tasks');
       let content = fs.readFileSync('./server/methods/tasks.js', {encoding: 'utf-8'});
@@ -627,6 +713,35 @@ import getUnpublishedFields from '/lib/get_unpublished_fields';
 export default function () {
   Meteor.publish('tasks', function () {
     return Tasks.find({}, getUnpublishedFields(Tasks));
+  });
+}
+`);
+    });
+
+    it("generates a model publication with publishComposite when hasOwner option is set", function() {
+      generate('model', 'tasks', {hasOwner: true});
+      let content = fs.readFileSync('./server/publications/tasks.js', {encoding: 'utf-8'});
+      expect(content).to.equal(
+`import {Tasks} from '/lib/collections';
+import {Meteor} from 'meteor/meteor';
+import {check} from 'meteor/check';
+import getUnpublishedFields from '/lib/get_unpublished_fields';
+
+export default function () {
+  Meteor.publishComposite('tasks', {
+    find() {
+      return Tasks.find({}, getUnpublishedFields(Tasks));
+    },
+    children: [
+      {
+        find(doc) {
+          return Meteor.users.find(
+            { _id: doc.owner },
+            { limit: 1, fields: { username: 1 } }
+          );
+        }
+      }
+    ]
   });
 }
 `);

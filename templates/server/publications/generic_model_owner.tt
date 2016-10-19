@@ -1,0 +1,22 @@
+import {<%= collectionName %>} from '/lib/collections';
+import {Meteor} from 'meteor/meteor';
+import {check} from 'meteor/check';
+import getUnpublishedFields from '/lib/get_unpublished_fields';
+
+export default function () {
+  Meteor.publishComposite('<%= publicationFileName %>', {
+    find() {
+      return <%= collectionName %>.find({}, getUnpublishedFields(<%= collectionName %>));
+    },
+    children: [
+      {
+        find(doc) {
+          return Meteor.users.find(
+            { _id: doc.owner },
+            { limit: 1, fields: { username: 1 } }
+          );
+        }
+      }
+    ]
+  });
+}
