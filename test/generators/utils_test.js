@@ -130,7 +130,6 @@ describe("getTemplateVaraibles", function() {
 
     it("gets template variables - variation 1", function() {
       let result = utils.getTemplateVaraibles('component', 'core', 'userList');
-      console.log(result);
       let matched = _.isEqual(result, expected);
       expect(matched).to.equal(true);
     });
