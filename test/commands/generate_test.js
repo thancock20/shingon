@@ -175,13 +175,14 @@ describe('core.containers.comment_list', () => {
       generate('component', 'core:post');
       let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
       expect(content).to.equal(
-`import React from 'react';
+`import React, { PropTypes } from 'react';
 
 const Post = () => (
   <div>
     Post
   </div>
 );
+Post.propTypes = {};
 
 export default Post;
 `);
@@ -191,7 +192,7 @@ export default Post;
       generate('component', 'core:post', {useClass: true});
       let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
       expect(content).to.equal(
-`import React from 'react';
+`import React, { PropTypes } from 'react';
 
 class Post extends React.Component {
   constructor(props) {
@@ -206,6 +207,7 @@ class Post extends React.Component {
     );
   }
 }
+Post.propTypes = {};
 
 export default Post;
 `);
@@ -215,7 +217,7 @@ export default Post;
       generate('component', 'core:post', {children: ['FirstChild', 'SecondChild']});
       let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
       expect(content).to.equal(
-`import React from 'react';
+`import React, { PropTypes } from 'react';
 import FirstChild from './first_child.jsx';
 import SecondChild from './second_child.jsx';
 
@@ -226,6 +228,7 @@ const Post = () => (
     <SecondChild />
   </div>
 );
+Post.propTypes = {};
 
 export default Post;
 `);
@@ -235,7 +238,7 @@ export default Post;
       generate('component', 'core:post', {useClass: true, children: ['FirstChild', 'SecondChild']});
       let content = fs.readFileSync('./client/modules/core/components/post.jsx', {encoding: 'utf-8'});
       expect(content).to.equal(
-`import React from 'react';
+`import React, { PropTypes } from 'react';
 import FirstChild from './first_child.jsx';
 import SecondChild from './second_child.jsx';
 
@@ -254,6 +257,7 @@ class Post extends React.Component {
     );
   }
 }
+Post.propTypes = {};
 
 export default Post;
 `);

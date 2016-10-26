@@ -1,4 +1,4 @@
-import React from 'react';<% if (childrenImports) { %><%= childrenImports %><% } %>
+import React, { PropTypes } from 'react';<% if (childrenImports) { %><%= childrenImports %><% } %>
 
 class <%= componentName %> extends React.Component {
   constructor(props) {
@@ -13,5 +13,6 @@ class <%= componentName %> extends React.Component {
     );
   }
 }
+<%= componentName %>.propTypes = {};
 
 export default <%= componentName %>;
