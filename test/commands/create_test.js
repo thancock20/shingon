@@ -20,6 +20,8 @@ describe("create command", function() {
     expect(checkFileOrDirExists('./blog')).to.equal(true);
     expect(checkFileOrDirExists('./blog/package.json')).to.equal(true);
     expect(checkFileOrDirExists('./blog/.gitignore')).to.equal(true);
+    expect(checkFileOrDirExists('./blog/settings-development.json')).to.equal(true);
+    expect(checkFileOrDirExists('./blog/settings-production.json')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/configs/context.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/modules/core/actions/index.js')).to.equal(true);
     expect(checkFileOrDirExists('./blog/client/modules/core/actions/tests')).to.equal(true);
