@@ -30,7 +30,7 @@ const <%= className %> = Class.create({
       // const doc = e.currentTarget;
     }
   },
-  methods: {
+  helpers: {
     create(inits) {
       // this.something = inits.something;
       // this.save();
@@ -42,7 +42,7 @@ const <%= className %> = Class.create({
       //   }
       // }
       // this.updatedAt = new Date();
-      // this.save;
+      // this.save();
     }
   }
 });

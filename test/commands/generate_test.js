@@ -581,7 +581,7 @@ const Task = Class.create({
       // const doc = e.currentTarget;
     }
   },
-  methods: {
+  helpers: {
     create(inits) {
       // this.something = inits.something;
       // this.save();
@@ -593,7 +593,7 @@ const Task = Class.create({
       //   }
       // }
       // this.updatedAt = new Date();
-      // this.save;
+      // this.save();
     }
   }
 });
@@ -654,7 +654,7 @@ const Task = Class.create({
       }
     }
   },
-  methods: {
+  helpers: {
     create(inits) {
       if (!Meteor.userId()) {
         throw new Meteor.Error('not-authorized');
@@ -676,7 +676,7 @@ const Task = Class.create({
       }
 
       this.updatedAt = new Date();
-      this.save;
+      this.save();
     },
     isOwner() {
       return this.owner === Meteor.userId();
