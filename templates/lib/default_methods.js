@@ -8,6 +8,8 @@ export default function (methodName, ClassName) {
 
       const instance = new ClassName();
       instance.create(toInsert);
+      
+      return instance._id;
     },
 
     [`${methodName}.edit`](Id, updates) {
