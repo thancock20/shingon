@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-const Layout = ({content = () => null }) => (
+const Layout = ({children}) => (
   <div>
     <Helmet
       defaultTitle="<%= appName %>"
@@ -11,7 +11,7 @@ const Layout = ({content = () => null }) => (
       ]}
     />
     <div>
-      {content()}
+      {children}
     </div>
   </div>
 );
